@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-
+// Função para converter comprimento
 void comprimento() {
     double metros, centimetros;
     printf("\nDigite o valor em metros: ");
@@ -10,7 +9,7 @@ void comprimento() {
     printf("%.2f metros equivale a %.2f centimetros.\n", metros, centimetros);
 }
 
-
+// Função para converter massa
 void massa() {
     double quilogramas, gramas;
     printf("\nDigite o valor em quilogramas: ");
@@ -19,9 +18,7 @@ void massa() {
     printf("%.2f quilogramas equivale a %.2f gramas.\n", quilogramas, gramas);
 }
 
-
-#include <stdio.h>
-
+// Função para converter volume
 void converterVolume(float valor, int unidadeOrigem, int unidadeDestino) {
     float convertido;
 
@@ -33,11 +30,11 @@ void converterVolume(float valor, int unidadeOrigem, int unidadeDestino) {
         case 2: // Mililitros
             convertido = valor / 1000;
             break;
-        case 3: // Metros cubicos
+        case 3: // Metros cúbicos
             convertido = valor * 1000;
             break;
         default:
-            printf("Unidade de origem invalida!\n");
+            printf("Unidade de origem inválida!\n");
             return;
     }
 
@@ -49,22 +46,23 @@ void converterVolume(float valor, int unidadeOrigem, int unidadeDestino) {
         case 2: // Mililitros
             printf("%.2f mililitros\n", convertido * 1000);
             break;
-        case 3: // Metros cubicos
-            printf("%.2f metros cubicos\n", convertido / 1000);
+        case 3: // Metros cúbicos
+            printf("%.2f metros cúbicos\n", convertido / 1000);
             break;
         default:
-            printf("Unidade de destino invalida!\n");
+            printf("Unidade de destino inválida!\n");
             return;
     }
 }
 
-int main() {
+// Função que encapsula a lógica de volume
+void volume() {
     float valor;
     int unidadeOrigem, unidadeDestino;
 
-    printf("Conversor de unidades de volume\n");
+    printf("\nConversor de unidades de volume\n");
     printf("Escolha a unidade de origem:\n");
-    printf("1. Litros\n2. Mililitros\n3. Metros cubicos\n");
+    printf("1. Litros\n2. Mililitros\n3. Metros cúbicos\n");
     printf("Digite sua escolha: ");
     scanf("%d", &unidadeOrigem);
 
@@ -72,12 +70,10 @@ int main() {
     scanf("%f", &valor);
 
     printf("Escolha a unidade de destino:\n");
-    printf("1. Litros\n2. Mililitros\n3. Metros cubicos\n");
+    printf("1. Litros\n2. Mililitros\n3. Metros cúbicos\n");
     printf("Digite sua escolha: ");
     scanf("%d", &unidadeDestino);
 
-    printf("Resultado da conversao: ");
+    printf("Resultado da conversão: ");
     converterVolume(valor, unidadeOrigem, unidadeDestino);
-
-    return 0;
 }

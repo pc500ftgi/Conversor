@@ -1,10 +1,11 @@
 #include <stdio.h>
 
+// Função para converter temperatura
 void converterTemperatura(float valor, int unidadeOrigem, int unidadeDestino) {
     float convertido;
 
     if (unidadeOrigem == unidadeDestino) {
-        printf("O valor convertido e: %.2f\n", valor);
+        printf("O valor convertido é: %.2f\n", valor);
         return;
     }
 
@@ -20,32 +21,33 @@ void converterTemperatura(float valor, int unidadeOrigem, int unidadeDestino) {
             convertido = valor - 273.15;
             break;
         default:
-            printf("Unidade de origem invalida!\n");
+            printf("Unidade de origem inválida!\n");
             return;
     }
 
     // Converte de Celsius para a unidade de destino
     switch (unidadeDestino) {
         case 1: // Celsius
-            printf("O valor convertido e: %.2f Celsius\n", convertido);
+            printf("O valor convertido é: %.2f Celsius\n", convertido);
             break;
         case 2: // Fahrenheit
-            printf("O valor convertido e: %.2f Fahrenheit\n", (convertido * 9 / 5) + 32);
+            printf("O valor convertido é: %.2f Fahrenheit\n", (convertido * 9 / 5) + 32);
             break;
         case 3: // Kelvin
-            printf("O valor convertido e: %.2f Kelvin\n", convertido + 273.15);
+            printf("O valor convertido é: %.2f Kelvin\n", convertido + 273.15);
             break;
         default:
-            printf("Unidade de destino invalida!\n");
+            printf("Unidade de destino inválida!\n");
             return;
     }
 }
 
-int main() {
+// Função que encapsula a lógica de temperatura
+void temperatura() {
     float valor;
     int unidadeOrigem, unidadeDestino;
 
-    printf("Conversor de unidades de temperatura\n");
+    printf("\nConversor de unidades de temperatura\n");
     printf("Escolha a unidade de origem:\n");
     printf("1. Celsius\n2. Fahrenheit\n3. Kelvin\n");
     printf("Digite sua escolha: ");
@@ -60,6 +62,4 @@ int main() {
     scanf("%d", &unidadeDestino);
 
     converterTemperatura(valor, unidadeOrigem, unidadeDestino);
-
-    return 0;
 }
