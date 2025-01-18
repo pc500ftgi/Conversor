@@ -1,44 +1,30 @@
-#include <stdio.h>
-
-// Declarações das funções dos outros arquivos
-void temperatura();
-void comprimento();
-void massa();
-void volume();
-
 int main() {
-    int opcao;
+    // Configura os pinos dos LEDs e do buzzer como saída
+    gpio_init(LED_VERDE_PIN); gpio_set_dir(LED_VERDE_PIN, GPIO_OUT);
+    gpio_init(LED_AZUL_PIN); gpio_set_dir(LED_AZUL_PIN, GPIO_OUT);
+    gpio_init(LED_VERMELHO_PIN); gpio_set_dir(LED_VERMELHO_PIN, GPIO_OUT);
+    gpio_init(BUZZER_PIN); gpio_set_dir(BUZZER_PIN, GPIO_OUT);
 
-    do {
-        printf("\nConversor de Unidades\n");
-        printf("1. Converter Temperatura (Celsius, Fahrenheit, Kelvin)\n");
-        printf("2. Converter Comprimento (metros para centímetros)\n");
-        printf("3. Converter Massa (quilogramas para gramas)\n");
-        printf("4. Converter Volume (litros, mililitros, metros cúbicos)\n");
-        printf("5. Sair\n");
-        printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+    // Inicializa o teclado
+    teclado_init();
 
-        switch (opcao) {
-            case 1:
-                temperatura();
-                break;
-            case 2:
-                comprimento();
-                break;
-            case 3:
-                massa();
-                break;
-            case 4:
-                volume();
-                break;
-            case 5:
-                printf("Encerrando o programa.\n");
-                break;
-            default:
-                printf("Opção inválida! Tente novamente.\n");
+    // Desliga tudo no início
+    gpio_put(LED_VERDE_PIN, 0);
+    gpio_put(LED_AZUL_PIN, 0);
+    gpio_put(LED_VERMELHO_PIN, 0);
+    gpio_put(BUZZER_PIN, 0);
+
+    // Loop principal
+    while (true) {
+        char tecla = ler_tecla();  // Lê a tecla pressionada
+
+        if (tecla) {  // Se uma tecla foi pressionada
+            controle_leds(tecla);  // Controla os LEDs
+            controle_buzzer(tecla);  // Controla o buzzer
         }
-    } while (opcao != 5);
+
+        sleep_ms(100);  // Aguarda um pouco antes de ler a próxima tecla
+    }
 
     return 0;
 }
